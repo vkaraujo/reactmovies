@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams} from "react-router-dom"
 import { getDataId } from "../api/tmdb";
+import { TrailerModal } from "../components/TrailerModal";
 
 export function Detalhes(){
     const {id, categoria} = useParams();
     const navigate = useNavigate();
 
     const [item, setItem] = useState([]);
+    const [isTrailerOpen, setIsTrailerOpen] = useState(false);
 
     async function loadData(){
         const data = await getDataId(categoria, id);
@@ -36,12 +38,29 @@ export function Detalhes(){
                         {item.overview}
                     </p>
 
-                    <button 
-                        onClick={()=> navigate(`../${categoria}`)} 
-                        className="bg-brand-blue-light text-brand-dark py-2 px-10 rounded mt-5 hover:bg-brand-yellow">
-                        Voltar</button>
+                    <div className="flex gap-4 mt-5">
+                        <button
+                            onClick={() => setIsTrailerOpen(true)}
+                            className="bg-brand-blue-light text-brand-dark py-2 px-10 rounded hover:bg-brand-yellow"
+                        >
+                            Watch Trailer
+                        </button>
+                        <button
+                            onClick={() => navigate(`../${categoria}`)}
+                            className="bg-brand-blue-light text-brand-dark py-2 px-10 rounded hover:bg-brand-yellow"
+                        >
+                            Voltar
+                        </button>
+                    </div>
                 </div>
             </div>
+
+            <TrailerModal
+                categoria={categoria}
+                id={id}
+                isOpen={isTrailerOpen}
+                onClose={() => setIsTrailerOpen(false)}
+            />
         </>
         
     )

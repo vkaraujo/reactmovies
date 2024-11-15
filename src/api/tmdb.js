@@ -51,3 +51,16 @@ export async function searchData(categoria, currentPage, query) {
 
     return response.data.results;
 }
+
+export async function getDataVideos(categoria, id) {
+    const endpoint = categoria === 'filmes' ? 'movie' : 'tv';
+
+    const response = await axios.get(`${BASE_URL}/${endpoint}/${id}/videos`, {
+        params: {
+            api_key: API_KEY,
+            language: 'pt-BR',
+        },
+    });
+
+    return response.data.results;
+}
