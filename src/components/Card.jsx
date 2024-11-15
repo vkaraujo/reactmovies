@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 import star from "../assets/star.svg";
+import placeholder from "../assets/placeholder.jpg";
 
 export function Card({ item, categoria }) {
+    const imageUrl = item.poster_path 
+        ? `https://image.tmdb.org/t/p/w500/${item.poster_path}` 
+        : placeholder;
+
     return (
         <Link to={`../detalhes/${categoria}/${item.id}`} className="w-[270px] h-[300px] relative" >
             <img className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-all rounded"
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt=""/>
+                src={imageUrl} alt=""/>
 
             <div className="absolute bottom-2 left-2 pointer-events-none">
                 <h2 className="font-bold text-lg">{item.title || item.name}</h2>

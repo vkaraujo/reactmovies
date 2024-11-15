@@ -3,10 +3,11 @@ import { getData, searchData } from "../api/tmdb"
 import { ClimbingBoxLoader } from 'react-spinners';
 import { Card } from "./Card";
 import { Pagination } from "./Pagination";
+import { SortFilter } from "./SortFilter";
+import { SearchBar } from "./SearchBar"; 
 
 
 export function List({categoria}){
-    // Criando o estado, iniciando um array vazio
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
@@ -36,9 +37,9 @@ export function List({categoria}){
                 data = await getData(categoria, page, sortOrder);
             }
             
-            setItems(data)    // Guarda os dados da API em um estado
+            setItems(data)
             setTimeout(()=>{
-                setLoading(false) // desabilida o loading
+                setLoading(false)
             }, 500)
             
         }
@@ -48,10 +49,9 @@ export function List({categoria}){
         }
     }
 
-    //Função especial que é executada ao fim da renderização do componente
     useEffect(()=>{
         loadItems();
-    } ,[page, sortOrder, isSearching, searchQuery]);
+    } ,[page, sortOrder, isSearching]);
 
     const handleSortChange = (ordem) => {
         setSortOrder(ordem.target.value);
@@ -59,11 +59,10 @@ export function List({categoria}){
         setIsSearching(false);
     };
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        setIsSearching(true);
+    const handleSearch = (query, isSearchMode) => {
+        setSearchQuery(query);
+        setIsSearching(isSearchMode);
         setPage(1);
-        loadItems();
     };
 
     if(loading){
@@ -79,33 +78,9 @@ export function List({categoria}){
         <>
             <div className="max-w-container-site mx-auto">
                 <div className="flex justify-between mt-3">
-                    <div className="flex flex-wrap justify-center">
-                        <select 
-                          className="w-40 border py-1 px-3 bg-brand-blue-dark" 
-                          value={sortOrder} 
-                          onChange={(e)=>handleSortChange(e)}>
-                            {sortOptions
-                                .filter(option => option.appliesTo.includes(categoria))
-                                .map(option => (
-                                    <option key={option.value} value={option.value}>
-                                        {option.label}
-                                    </option>
-                            ))}
-                        </select>
-                    </div>
+                    <SortFilter sortOrder={sortOrder} handleSortChange={handleSortChange} categoria={categoria} sortOptions={sortOptions} />
 
-                    <form onSubmit={handleSearch} className="flex items-center">
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            placeholder="Search..."
-                            className="border px-3 py-1 rounded w-60"
-                        />
-                        <button type="submit" className="ml-2 px-3 py-1 bg-brand-blue-dark text-white rounded">
-                            Search
-                        </button>
-                    </form>
+                    <SearchBar onSearch={handleSearch} />
 
                     <Pagination page={page} setPage={setPage}/>
                 </div>

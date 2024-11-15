@@ -36,12 +36,16 @@ export async function getDataId(categoria, id){
 export async function searchData(categoria, currentPage, query) {
     const endpoint = categoria === 'filmes' ? 'movie' : 'tv';
 
+    if (!query || query.trim() === "") {
+        return [];
+    }
+
     const response = await axios.get(`${BASE_URL}/search/${endpoint}`, {
         params: {
             api_key: API_KEY,
             language: 'pt-BR',
             page: currentPage,
-            query
+            query: encodeURIComponent(query)
         }
     });
 
