@@ -11,6 +11,7 @@ export function TrailerModal({ categoria, id, isOpen, onClose }) {
             setVideoKey(trailer?.key || null);
         } catch (error) {
             console.error("Error loading trailer:", error);
+            setVideoKey(null);
         }
     }
 

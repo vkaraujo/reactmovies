@@ -10,7 +10,7 @@ export function Card({ item, categoria }) {
     return (
         <Link to={`../detalhes/${categoria}/${item.id}`} className="w-[270px] h-[300px] relative" >
             <img className="w-full h-full object-cover opacity-60 hover:opacity-100 transition-all rounded"
-                src={imageUrl} alt=""/>
+                src={imageUrl} alt="poster"/>
 
             <div className="absolute bottom-2 left-2 pointer-events-none">
                 <h2 className="font-bold text-lg">{item.title || item.name}</h2>
