@@ -26,5 +26,5 @@ export function Pagination({page, setPage}){
                 →
             </button>
         </div>
-)
+    )
 }

@@ -7,6 +7,17 @@ A React application to browse and discover movies and TV shows, featuring detail
 Check out the deployed app on Vercel:  
 👉 [React Movies on Vercel](https://reactmovies-iota.vercel.app/)
 
+## Environment Variables
+
+This project uses the following environment variables. Create a `.env` file in the root of the project with the following keys:
+
+```plaintext
+VITE_API_KEY=<your_api_key>
+VITE_BASE_URL=https://api.themoviedb.org/3
+```
+
+You can obtain an API key by signing up at the [TMDB Developer Portal](https://developer.themoviedb.org/docs/getting-started).
+
 ## ✨ Design Reference
 
 The project is based on this Figma design:  
@@ -23,4 +34,23 @@ The project uses the following dependencies:
 - **[react-router-dom](https://reactrouter.com/)**: DOM bindings for React Router.
 - **[react-spinners](https://www.davidhu.io/react-spinners/)**: Loading spinners for React.
 
+## Tailwind CSS
+
+<p>
+  <img src="./src/assets/tailwindcss.png" alt="stimulus image" width="200"/>
+</p>
+
+This project uses **[Tailwind CSS](https://tailwindcss.com/)**, a utility-first CSS framework for rapid UI development. Tailwind is configured in the `tailwind.config.js` file, and the global styles are imported in `src/global.css`.
+
+#### Key Features of Tailwind CSS in This Project:
+
+- **Responsive Design**: Tailwind's utility classes are used throughout the project for a fully responsive UI.
+- **Customization**: Custom colors, spacing, and other utilities are configured in the Tailwind configuration.
+- **Ease of Use**: Utility-first classes make it easy to build consistent and maintainable styles.
+
+## Test Coverage Report
+
+Below is a screenshot of the current test coverage for the project:
+
+<img src="src/assets/coverage-report.png" alt="Coverage Report" width="600"/>
 
