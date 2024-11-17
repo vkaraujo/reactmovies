@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_KEY = '14514ec469a15f3118f1c70d35c5ae32'
-const BASE_URL = 'https://api.themoviedb.org/3'
+const API_KEY = import.meta.env.VITE_API_KEY;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 // https://api.themoviedb.org/3/movie/popular
 // https://api.themoviedb.org/3/tv/popular

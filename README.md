@@ -7,6 +7,17 @@ A React application to browse and discover movies and TV shows, featuring detail
 Check out the deployed app on Vercel:  
 👉 [React Movies on Vercel](https://reactmovies-iota.vercel.app/)
 
+## Environment Variables
+
+This project uses the following environment variables. Create a `.env` file in the root of the project with the following keys:
+
+```plaintext
+VITE_API_KEY=<your_api_key>
+VITE_BASE_URL=https://api.themoviedb.org/3
+```
+
+You can obtain an API key by signing up at the [TMDB Developer Portal](https://developer.themoviedb.org/docs/getting-started).
+
 ## ✨ Design Reference
 
 The project is based on this Figma design:  
